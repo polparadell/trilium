@@ -4,17 +4,15 @@ version: '3'
 services:
   trilium:
     image: zadam/trilium
-    restart: always
-    environment:
-      - trillium=/home/node/trilium-data
+    restart: unless-stopped
     ports:
       - "8080:8080"
     volumes:
-      - trillium:/home/node/trilium-data
+      - trillium-data:/home/node/trilium-data
     deploy:
       placement:
         constraints:
           - node.labels.type==worker
 
 volumes:
-  trilium:
+  trilium-data:

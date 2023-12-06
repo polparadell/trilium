@@ -11,6 +11,10 @@ services:
       - "8080:8080"
     volumes:
       - trillium:/home/node/trilium-data
+    deploy:
+      placement:
+        constraints:
+          - node.labels.type==worker
 
 volumes:
   trilium:

@@ -5,14 +5,18 @@ services:
   trilium:
     image: zadam/trilium
     restart: unless-stopped
-    ports:
-      - "8080:8080"
+    networks:
+      - reverse_proxy_frontend
     volumes:
       - trillium-data:/home/node/trilium-data
     deploy:
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.trilium.rule=Path(`/trilium`)"
+        - "traefik.http.services.trilium.loadbalancer.server.port=8080"
       placement:
         constraints:
-          - node.labels.type==worker
+          - node.labels.type!=nas
 
 volumes:
   trilium-data:

@@ -20,3 +20,8 @@ services:
 
 volumes:
   trilium-data:
+
+networks:
+  internal:
+  reverse_proxy_frontend:
+    external: true

@@ -14,6 +14,7 @@ services:
         - "traefik.enable=true"
         - "traefik.http.routers.trilium.rule=Path(`/trilium`)"
         - "traefik.http.services.trilium.loadbalancer.server.port=8080"
+        - "traefik.http.middlewares.trillium_path.replacepath.path=/"
       placement:
         constraints:
           - node.labels.type!=nas

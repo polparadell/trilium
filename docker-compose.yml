@@ -8,7 +8,7 @@ services:
     deploy:
       labels:
         - "traefik.enable=true"
-        - "traefik.http.routers.trilium.rule= Host(`trilium.casa`) && PathPrefix(`/trilium`)"
+        - "traefik.http.routers.trilium.rule= Host(`rpi1.polbel.casa`) && PathPrefix(`/trilium`)"
         - "traefik.http.services.trilium.loadbalancer.server.port=8080"
       placement:
         constraints:
